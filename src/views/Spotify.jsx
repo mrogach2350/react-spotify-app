@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { getFollowedArtists } from "@/services/spotifyApi";
-import { Card, ImageList, ImageListItem } from "@mui/material";
+import { getFollowedArtists } from "@/services/spotifyApi"
+import { Card, ImageList, ImageListItem } from "@mui/material"
 
 const Spotify = () => {
   const [followedArtists, setFollowedArtists] = useState([]);
