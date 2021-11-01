@@ -1,13 +1,15 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-
+import React from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
+import { useSelector } from "react-redux";
 import qs from "query-string";
+import isEmpty from "ramda/src/isEmpty";
+
 const responseType = "token";
 const clientId = import.meta.env.VITE_APP_SPOTIFY_CLIENT_ID;
 const redirectUri = import.meta.env.VITE_APP_SPOTIFY_REDIRECT_URI;
@@ -17,6 +19,8 @@ const initiateSpotifyLogin = () => {
     response_type: encodeURI(responseType),
     client_id: encodeURI(clientId),
     redirect_uri: encodeURI(redirectUri),
+    scope:
+      "playlist-read-private user-read-private user-read-email user-read-currently-playing user-read-playback-state user-library-read user-follow-read app-remote-control user-read-recently-played user-top-read",
   };
 
   const queryString = qs.stringify(spotifyAuthOptions);
@@ -25,6 +29,9 @@ const initiateSpotifyLogin = () => {
 };
 
 export const MyAppBar = () => {
+  const userData = useSelector((state) => state.auth.userData);
+  const token = useSelector((state) => state.auth.token);
+  const isLoggedIn = !!token;
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -41,11 +48,17 @@ export const MyAppBar = () => {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             News
           </Typography>
-          <Button onClick={initiateSpotifyLogin} color="inherit">Login</Button>
+          {isLoggedIn ? (
+            <Typography>{userData.display_name}</Typography>
+          ) : (
+            <Button onClick={initiateSpotifyLogin} color="inherit">
+              Login
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
     </Box>
   );
-}
+};
 
-export default MyAppBar
+export default MyAppBar;

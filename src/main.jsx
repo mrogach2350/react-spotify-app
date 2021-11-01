@@ -4,15 +4,7 @@ import "./index.css";
 import App from "@/App";
 import { initializeApp } from "firebase/app";
 import { Provider } from "react-redux";
-import { configureStore } from "@reduxjs/toolkit";
-import { authReducer } from "@/store";
-
-const store = configureStore({
-  reducer: {
-    auth: authReducer,
-  },
-});
-
+import store from "@/store/";
 const firebaseConfig = {
   apiKey: "AIzaSyAWJVzlr6thEkabIIiI1Toa-Jo0-_W019Y",
   authDomain: "song-ranker-16cf5.firebaseapp.com",
