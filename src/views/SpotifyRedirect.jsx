@@ -33,7 +33,7 @@ const SpotifyRedirect = () => {
     }
   }, [token]);
 
-  return <div>LoggingIn...</div>;
+  return (<div>LoggingIn...</div>);
 };
 
 export default SpotifyRedirect;
