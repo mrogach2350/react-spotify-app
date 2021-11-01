@@ -1,8 +1,9 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import "./App.css";
-import Spotify from "@/views/Spotify";
-import SpotifyRedirect from "@/views/SpotifyRedirect";
-import AppBar from "./components/AppBar";
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import './App.css';
+import Spotify from '@/views/Spotify';
+import SpotifyRedirect from '@/views/SpotifyRedirect';
+import AppBar from './components/AppBar';
 
 function App() {
   return (

@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
-import { getFollowedArtists } from "@/services/spotifyApi"
-import { Card, ImageList, ImageListItem } from "@mui/material"
+import React, { useState, useEffect } from 'react';
+import { getFollowedArtists } from '@/services/spotifyApi';
+import { Card, ImageList, ImageListItem } from '@mui/material';
 
 const Spotify = () => {
   const [followedArtists, setFollowedArtists] = useState([]);
@@ -9,7 +9,7 @@ const Spotify = () => {
   useEffect(() => {
     const fetchFollowedArtists = async () => {
       const data = await getFollowedArtists();
-      console.log("data: ", data);
+      console.log('data: ', data);
       setFollowedArtists(data?.artists.items);
     };
     fetchFollowedArtists();
@@ -25,12 +25,7 @@ const Spotify = () => {
   return (
     <div>
       <Card>
-        <ImageList
-          sx={{ width: 500, height: 450 }}
-          variant="quilted"
-          cols={4}
-          rowHeight={121}
-        >
+        <ImageList sx={{ width: 500, height: 450 }} variant="quilted" cols={4} rowHeight={121}>
           {imageUrls.map((item) => (
             <ImageListItem key={item}>
               <img src={item} alt={item} loading="lazy" />

@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import qs from 'query-string';
 import { useLocation, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -27,13 +27,13 @@ const SpotifyRedirect = () => {
   }, []);
 
   useEffect(() => {
-    console.log('setUserDetails: ', token)
+    console.log('setUserDetails: ', token);
     if (token) {
       setUserDetails();
     }
   }, [token]);
 
-  return (<div>LoggingIn...</div>);
+  return <div>LoggingIn...</div>;
 };
 
 export default SpotifyRedirect;
