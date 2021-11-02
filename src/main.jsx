@@ -5,14 +5,15 @@ import App from '@/App';
 import { initializeApp } from 'firebase/app';
 import { Provider } from 'react-redux';
 import store from '@/store/';
+
 const firebaseConfig = {
-  apiKey: 'AIzaSyAWJVzlr6thEkabIIiI1Toa-Jo0-_W019Y',
-  authDomain: 'song-ranker-16cf5.firebaseapp.com',
-  projectId: 'song-ranker-16cf5',
-  storageBucket: 'song-ranker-16cf5.appspot.com',
-  messagingSenderId: '2227461369',
-  appId: '1:2227461369:web:7742ad951e3082f4fb9628',
-  measurementId: 'G-7Z1N0YRN13',
+  apiKey: import.meta.env.VITE_APP_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_APP_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_APP_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_APP_FIREBASE_MEASUREMENT_ID,
 };
 
 initializeApp(firebaseConfig);
