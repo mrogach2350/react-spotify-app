@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { getUserPlaylists } from '@/services/spotifyApi';
 import {
   Card,
@@ -10,11 +11,10 @@ import {
   Pagination,
 } from '@mui/material';
 
-const ListUserPlaylists = () => {
-  /* eslint-disable no-unused-vars */
+const ListUserPlaylists = ({ handleSelectPlaylist, selectedId }) => {
   const [page, setPage] = useState(1);
   const [pages, setPages] = useState(1);
-  const [limit, setLimit] = useState(20);
+  const [limit] = useState(20);
   const [playlists, setPlaylists] = useState([]);
 
   useEffect(() => {
@@ -37,7 +37,13 @@ const ListUserPlaylists = () => {
       <CardContent>
         <List>
           {playlists.map((playlist) => (
-            <ListItemButton key={playlist.name}>{playlist.name}</ListItemButton>
+            <ListItemButton
+              selected={selectedId === playlist.id}
+              onClick={() => handleSelectPlaylist(playlist)}
+              key={playlist.id}
+            >
+              {playlist.name}
+            </ListItemButton>
           ))}
         </List>
       </CardContent>
@@ -46,6 +52,11 @@ const ListUserPlaylists = () => {
       </CardActions>
     </Card>
   );
+};
+
+ListUserPlaylists.propTypes = {
+  handleSelectPlaylist: PropTypes.func,
+  selectedId: PropTypes.string,
 };
 
 export default ListUserPlaylists;
