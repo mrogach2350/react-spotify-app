@@ -17,4 +17,9 @@ module.exports = {
     semi: 2,
   },
   ignorePatterns: ['**/dist/* *.json'],
+  settings: {
+    react: {
+      version: 'detect'
+    }
+  }
 };

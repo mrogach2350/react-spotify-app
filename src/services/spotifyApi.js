@@ -35,7 +35,18 @@ export const getFollowedArtists = async () => {
   }
 };
 
-export const getUserPlaylists = async () => {
-  // eslint-disable-next-line no-unused-vars
+export const getUserPlaylists = async ({ limit = 20, offset = 0 }) => {
+  const queryString = qs.stringify({ offset, limit });
+  const queryUrl = `${import.meta.env.VITE_APP_SPOTIFY_BASE_URL}/me/playlists?${queryString}`;
   const token = selectToken();
+  try {
+    const response = await axios.get(queryUrl, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return await response.data;
+  } catch (error) {
+    console.log('error: ', error);
+  }
 };

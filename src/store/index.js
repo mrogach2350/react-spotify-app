@@ -7,6 +7,6 @@ const store = configureStore({
   },
 });
 export const getState = () => store.getState();
-export const selectToken = () => getState().auth.userData.token;
+export const selectToken = () => getState().auth.token;
 
 export default store;

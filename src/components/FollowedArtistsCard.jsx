@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { getFollowedArtists } from '@/services/spotifyApi';
-import { Card, ImageList, ImageListItem } from '@mui/material';
+import { Card, CardContent, CardHeader, ImageList, ImageListItem } from '@mui/material';
 
-const Spotify = () => {
+const FollowedArtistsCard = () => {
   const [followedArtists, setFollowedArtists] = useState([]);
   const [imageUrls, setImageUrls] = useState([]);
 
@@ -23,18 +23,19 @@ const Spotify = () => {
   }, [followedArtists]);
 
   return (
-    <div>
-      <Card>
-        <ImageList sx={{ width: 500, height: 450 }} variant="quilted" cols={4} rowHeight={121}>
+    <Card sx={{ margin: '25px' }} raised="2">
+      <CardHeader title="Followed Artists" />
+      <CardContent>
+        <ImageList variant="quilted" cols={4} rowHeight={121}>
           {imageUrls.map((item) => (
             <ImageListItem key={item}>
               <img src={item} alt={item} loading="lazy" />
             </ImageListItem>
           ))}
         </ImageList>
-      </Card>
-    </div>
+      </CardContent>
+    </Card>
   );
 };
 
-export default Spotify;
+export default FollowedArtistsCard;
