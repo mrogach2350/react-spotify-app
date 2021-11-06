@@ -19,7 +19,7 @@ const initiateSpotifyLogin = () => {
     client_id: encodeURI(clientId),
     redirect_uri: encodeURI(redirectUri),
     scope:
-      'playlist-read-private user-read-private user-read-email user-read-currently-playing user-read-playback-state user-library-read user-follow-read app-remote-control user-read-recently-played user-top-read',
+      'playlist-modify-private user-read-private user-read-email user-read-currently-playing user-read-playback-state user-library-read user-follow-read app-remote-control user-read-recently-played user-top-read',
   };
 
   const queryString = qs.stringify(spotifyAuthOptions);

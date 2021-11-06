@@ -46,9 +46,25 @@ export const getUserPlaylists = async ({ limit = 20, offset = 0 }) => {
 };
 
 export const getPlaylistTracks = async (playlistId) => {
-  const queryUrl = `https://api.spotify.com/v1/playlists/${playlistId}/tracks`;
+  const queryUrl = `${import.meta.env.VITE_APP_SPOTIFY_BASE_URL}/playlists/${playlistId}/tracks`;
   try {
     const response = await axios.get(queryUrl, { ...buildHeader() });
+    return await response.data;
+  } catch (error) {
+    console.log('error: ', error);
+  }
+};
+
+export const reorderPlaylist = async ({ playlistId, rangeStart, insertBefore }) => {
+  const queryUrl = `${import.meta.env.VITE_APP_SPOTIFY_BASE_URL}/playlists/${playlistId}/tracks`;
+  try {
+    const response = await axios.put(
+      queryUrl,
+      { range_start: rangeStart, insert_before: insertBefore ++ },
+      {
+        ...buildHeader(),
+      },
+    );
     return await response.data;
   } catch (error) {
     console.log('error: ', error);
